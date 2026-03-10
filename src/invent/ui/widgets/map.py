@@ -342,7 +342,7 @@ class Map(Widget):
         self.publish("zoom_level_changed", zoom_level=self.zoom_level)
 
     def on_height_changed(self):
-        self.element.style["height"] = self.height
+        self.element.style.setProperty("height", self.height)
         self.publish("height_changed", height=self.height)
 
     def on_markers_changed(self):

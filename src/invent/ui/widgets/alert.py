@@ -81,18 +81,18 @@ class Alert(Widget):
         """
         if self.purpose == "DEFAULT":
             self.element.style.removeProperty("--alert-bg")
-            self.element.style["--alert-border-color"] = "var(--primary)"
+            self.element.style.setProperty("--alert-border-color", "var(--primary)")
         else:
             p = self.purpose.lower()
-            self.element.style["--alert-bg"] = f"var(--{p}-light)"
-            self.element.style["--alert-border-color"] = f"var(--{p})"
+            self.element.style.setProperty("--alert-bg", f"var(--{p}-light)")
+            self.element.style.setProperty("--alert-border-color", f"var(--{p})")
 
     def on_text_changed(self):
         """
         Update the alert's text content and visibility in the DOM.
         """
         self._text_el.innerHTML = from_markdown(self.text) or ""
-        self.element.style["display"] = "block" if self.text else "none"
+        self.element.style.setProperty("display", "block" if self.text else "none")
 
     def on_title_changed(self):
         """

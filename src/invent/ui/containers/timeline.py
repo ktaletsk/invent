@@ -46,6 +46,6 @@ class Timeline(Column):
 
     def on_direction_changed(self):
         if self.direction == "latest-at-top":
-            self.element.style["flex-direction"] = "column-reverse"
+            self.element.style.setProperty("flex-direction", "column-reverse")
         else:
-            self.element.style["flex-direction"] = "column"
+            self.element.style.setProperty("flex-direction", "column")

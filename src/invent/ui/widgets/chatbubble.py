@@ -94,9 +94,9 @@ class ChatBubble(Widget):
             # Compute contrast colours for text and links based on the
             # user-defined bubble background.
             colours = contrast_colours(self.shade)
-            self.element.style["--bubble-bg"] = self.shade
-            self.element.style["--bubble-text"] = colours["text"]
-            self.element.style["--bubble-link"] = colours["link"]
+            self.element.style.setProperty("--bubble-bg", self.shade)
+            self.element.style.setProperty("--bubble-text", colours["text"])
+            self.element.style.setProperty("--bubble-link", colours["link"])
         if self.author_image:
             image = web.img(
                 src=self.author_image,

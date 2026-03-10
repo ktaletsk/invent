@@ -61,13 +61,13 @@ class Image(Widget):
 
     def on_width_changed(self):
         if self.width is not None:
-            self.element.style["width"] = self.width
+            self.element.style.setProperty("width", self.width)
         else:
             self.element.style.removeProperty("width")
 
     def on_height_changed(self):
         if self.height is not None:
-            self.element.style["height"] = self.height
+            self.element.style.setProperty("height", self.height)
         else:
             self.element.style.removeProperty("height")
 

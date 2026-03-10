@@ -43,5 +43,5 @@ class Row(Box):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.element.style["flex-direction"] = "row"
-        self.element.style["flex-wrap"] = "wrap"
+        self.element.style.setProperty("flex-direction", "row")
+        self.element.style.setProperty("flex-wrap", "wrap")

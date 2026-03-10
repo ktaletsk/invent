@@ -39,7 +39,7 @@ class Box(Container):
 
     def render(self):
         element = super().render()
-        element.style["display"] = "flex"
+        element.style.setProperty("display", "flex")
         return element
 
     def on_gap_changed(self):

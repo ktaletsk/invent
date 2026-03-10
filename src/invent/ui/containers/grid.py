@@ -55,12 +55,12 @@ class Grid(Container):
         self._set_gap(self.row_gap, "row-gap")
 
     def on_columns_changed(self):
-        self.element.style["grid-template-columns"] = "auto " * self.columns
+        self.element.style.setProperty("grid-template-columns", "auto " * self.columns)
 
     def render(self):
         """
         Render the component.
         """
         element = super().render()
-        element.style["display"] = "grid"
+        element.style.setProperty("display", "grid")
         return element

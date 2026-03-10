@@ -275,8 +275,8 @@ class ContentCard(Widget):
         """
         if self.purpose == "DEFAULT":
             self.element.style.removeProperty("--card-bg")
-            self.element.style["--card-border-color"] = "var(--primary)"
+            self.element.style.setProperty("--card-border-color", "var(--primary)")
         else:
             p = self.purpose.lower()
-            self.element.style["--card-bg"] = f"var(--{p}-light)"
-            self.element.style["--card-border-color"] = f"var(--{p})"
+            self.element.style.setProperty("--card-bg", f"var(--{p}-light)")
+            self.element.style.setProperty("--card-border-color", f"var(--{p})")

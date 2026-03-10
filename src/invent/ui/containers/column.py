@@ -43,4 +43,4 @@ class Column(Box):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.element.style["flex-direction"] = "column"
+        self.element.style.setProperty("flex-direction", "column")

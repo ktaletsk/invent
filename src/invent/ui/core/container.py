@@ -57,7 +57,7 @@ class Container(Component):
     def _set_gap(self, gap, attr):
         sizes = GAP_SIZES
         size = sizes.get(gap.upper(), "0px")
-        self.element.style[attr] = size
+        self.element.style.setProperty(attr, size)
 
     def append(self, item):
         """

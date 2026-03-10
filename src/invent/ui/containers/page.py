@@ -67,9 +67,10 @@ class Page(Column):
         default.
         """
         if self.background:
-            document.body.style["background"] = self.background
+            document.body.style.setProperty("background", self.background)
         else:
-            document.body.style["background"] = (
+            document.body.style.setProperty(
+                "background",
                 None  # Reset to stylesheet default.
             )
 
@@ -79,7 +80,7 @@ class Page(Column):
         the current transition_speed choice.
         """
         var = _SPEED_VARS[self.transition_speed]
-        self.element.style["--page-transition-duration"] = f"var({var})"
+        self.element.style.setProperty("--page-transition-duration", f"var({var})")
 
     def _animate(self, cls, on_done):
         """
@@ -99,7 +100,7 @@ class Page(Column):
         """
         Update the body background immediately if this page is visible.
         """
-        if self.element.style["display"] != "None":
+        if self.element.style.getPropertyValue("display") != "None":
             self._apply_background()
 
     def on_transition_speed_changed(self):
@@ -114,9 +115,9 @@ class Page(Column):
         """
         element = super().render()
         element.classList.add("container")
-        element.style["display"] = "None"
+        element.style.setProperty("display", "None")
         var = _SPEED_VARS[self.transition_speed]
-        element.style["--page-transition-duration"] = f"var({var})"
+        element.style.setProperty("--page-transition-duration", f"var({var})")
         return element
 
     def show(self):
@@ -124,7 +125,7 @@ class Page(Column):
         Make the page visible, applying its background and transition.
         """
         self._apply_background()
-        self.element.style["display"] = "flex"
+        self.element.style.setProperty("display", "flex")
         if self.transition != "NONE":
             cls = f"invent-page--entering-{self.transition.lower()}"
             self._animate(cls, lambda: None)
@@ -135,12 +136,12 @@ class Page(Column):
         from view.
         """
         if self.transition == "NONE":
-            self.element.style["display"] = "None"  # Hidden by default.
+            self.element.style.setProperty("display", "None")  # Hidden by default.
             return
         cls = f"invent-page--leaving-{self.transition.lower()}"
 
         def on_done():
             # Hide the page once the exit animation completes.
-            self.element.style["display"] = "None"
+            self.element.style.setProperty("display", "None")
 
         self._animate(cls, on_done)

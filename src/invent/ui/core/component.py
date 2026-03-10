@@ -216,7 +216,8 @@ class Component:
         """
         Show / hide the element depending on the value of the property.
         """
-        self.element.style["visibility"] = (
+        self.element.style.setProperty(
+            "visibility",
             "visible" if self.visible else "hidden"
         )
 
@@ -226,7 +227,7 @@ class Component:
         container.
         """
         if self.column_span is not None:
-            self.element.style["grid-column"] = f"span {self.column_span}"
+            self.element.style.setProperty("grid-column", f"span {self.column_span}")
 
     def on_row_span_changed(self):
         """
@@ -234,14 +235,14 @@ class Component:
         container.
         """
         if self.row_span is not None:
-            self.element.style["grid-row"] = f"span {self.row_span}"
+            self.element.style.setProperty("grid-row", f"span {self.row_span}")
 
     def on_background_color_changed(self):
         """
         Set the background color.
         """
         if self.background_color:
-            self.element.style["background-color"] = self.background_color
+            self.element.style.setProperty("background-color", self.background_color)
         else:
             self.element.style.removeProperty("background-color")
 
@@ -250,7 +251,7 @@ class Component:
         Set the border color.
         """
         if self.border_color:
-            self.element.style["border-color"] = self.border_color
+            self.element.style.setProperty("border-color", self.border_color)
         else:
             self.element.style.removeProperty("border-color")
 
@@ -261,7 +262,7 @@ class Component:
         sizes = GAP_SIZES
         if self.border_width is not None:
             size = sizes[self.border_width.upper()]
-            self.element.style["border-width"] = size
+            self.element.style.setProperty("border-width", size)
         else:
             self.element.style.removeProperty("border-width")
 
@@ -270,7 +271,7 @@ class Component:
         Set the border style.
         """
         if self.border_style:
-            self.element.style["border-style"] = self.border_style
+            self.element.style.setProperty("border-style", self.border_style)
         else:
             self.element.style.removeProperty("border-style")
 
@@ -279,18 +280,18 @@ class Component:
         Set the horizontal alignment of the widget.
         """
         if self._parent_type == "Row":
-            self.element.style["justify-self"] = self.horizontal_align
+            self.element.style.setProperty("justify-self", self.horizontal_align)
         else:  # Column, Grid
-            self.element.style["align-self"] = self.horizontal_align
+            self.element.style.setProperty("align-self", self.horizontal_align)
 
     def on_vertical_align_changed(self):
         """
         Set the vertical alignment of the widget.
         """
         if self._parent_type == "Row":
-            self.element.style["align-self"] = self.vertical_align
+            self.element.style.setProperty("align-self", self.vertical_align)
         else:  # Column, Grid
-            self.element.style["justify-self"] = self.vertical_align
+            self.element.style.setProperty("justify-self", self.vertical_align)
 
     @classmethod
     def properties(cls):
