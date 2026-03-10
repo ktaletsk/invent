@@ -19,8 +19,8 @@ limitations under the License.
 """
 
 from invent.i18n import _
-from pyscript import window
-from pyscript.ffi import create_proxy
+from js import window
+from pyodide.ffi import create_proxy
 
 #: A dictionary of scheduled functions, keyed by the function's ID. The value
 #: is the handle returned by the JavaScript `setTimeout` function. This handle

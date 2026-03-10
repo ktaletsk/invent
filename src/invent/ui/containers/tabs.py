@@ -18,7 +18,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from pyscript.web import div, input_, label
+from invent._compat import div, input_, label
 
 from invent.i18n import _
 from ..core.container import Container
@@ -55,7 +55,7 @@ class Tabs(Container):
         for i, child in enumerate(self.children):
             tab_id = f"{self.id}-tab-{i}"
             l = label(child.name, classes="invent-tabs-label")
-            setattr(l._dom_element, "htmlFor", tab_id)
+            l.htmlFor = tab_id
             self.element.append(
                 input_(
                     type="radio",
@@ -76,10 +76,10 @@ class Tabs(Container):
         functionality remains intact when the id changes.
         """
         super().on_id_changed()
-        for i, item in enumerate(self.element.find("input[type=radio]")):
+        for i, item in enumerate(self.element.querySelectorAll("input[type=radio]")):
             tab_id = f"{self.id}-tab-{i}"
             item.id = tab_id
             item.name = self.id
-        for i, item in enumerate(self.element.find("label")):
+        for i, item in enumerate(self.element.querySelectorAll("label")):
             tab_id = f"{self.id}-tab-{i}"
-            setattr(item._dom_element, "htmlFor", tab_id)
+            item.htmlFor = tab_id

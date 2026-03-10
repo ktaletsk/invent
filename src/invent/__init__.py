@@ -18,9 +18,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from pyscript import js_import
-from pyscript import storage
-from pyscript.web import link, page
+from invent._compat import link
+from js import document
 from .channels import Message, subscribe, publish, unsubscribe, when
 from .datastore import DataStore, IndexDBBackend
 from .i18n import _, load_translations
@@ -62,15 +61,11 @@ async def start_datastore(_backend=None, **kwargs):
     global datastore
     if not datastore:
         if _backend is None:
-            # Default null storage backend.
             backend_instance = None
         elif _backend == IndexDBBackend:
-            # PyScript IndexDB storage backend. Needs awaiting on instantiation.
-            backend_instance = await storage(
-                datastore_name, storage_class=_backend
-            )
+            # IndexDBBackend not available in Pyodide runtime; fall back to default.
+            backend_instance = None
         else:
-            # Another given storage backend.
             backend_instance = _backend()
         datastore = DataStore(_backend=backend_instance, **kwargs)
 
@@ -87,22 +82,9 @@ chart_js = None
 
 async def load_js_modules():
     """
-    Load the JavaScript modules required by the Invent framework.
+    No-op in Pyodide runtime. JS modules are loaded externally.
     """
-    global marked, purify, leaflet, chart_js
-    marked, purify, leaflet, chart_js = await js_import(
-        # TODO: esm.run all the things here... ;-)
-        "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js",
-        "https://esm.run/dompurify",
-        "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet-src.esm.js",
-        "https://esm.run/chart.js/auto",
-    )
-    # CSS needed for leaflet.
-    leaflet_css = link(
-        rel="stylesheet",
-        href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css",
-    )
-    page.head.append(leaflet_css)
+    return
 
 
 #: The root from which all media files can be found.
@@ -111,8 +93,7 @@ media = Media([], "media")
 
 async def setup(_databackend=None, **kwargs):
     """
-    Setup all the things required by the Invent framework (e.g. datastore / JS
-    requirements).
+    Setup all the things required by the Invent framework (e.g. datastore).
 
     Takes optional start values for the datastore. The _databackend argument
     can be used to specify the storage backend for the datastore. If not
@@ -121,7 +102,6 @@ async def setup(_databackend=None, **kwargs):
     datastore.
     """
     await start_datastore(_databackend, **kwargs)
-    await load_js_modules()
 
 
 def go():

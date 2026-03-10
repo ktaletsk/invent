@@ -34,8 +34,8 @@ limitations under the License.
 
 from invent.i18n import _
 from ..containers.column import Column
-from pyscript.ffi import create_proxy
-from pyscript.web import article, header, img, h3, time, footer, div
+from pyodide.ffi import create_proxy
+from invent._compat import article, header, img, h3, time, footer, div
 from invent.ui.core import (
     Widget,
     TextProperty,
@@ -148,13 +148,13 @@ class ContentCard(Widget):
                 "--card-border-color": f"var(--primary)",
             }
         )
-        card.classes.add("invent-card")
+        card.classList.add("invent-card")
         if self.shape == "square":
-            card.classes.add("square")
+            card.classList.add("square")
         if self.publish_position == "end":
-            card.classes.add("publish-end")
+            card.classList.add("publish-end")
         if self.image_position == "banner":
-            card.classes.add("banner-image")
+            card.classList.add("banner-image")
         # Banner: full-width image above the header.
         # CSS hides this element unless the banner-image class is set.
         self._banner = img()
@@ -232,9 +232,9 @@ class ContentCard(Widget):
         Switch between avatar and banner image display modes.
         """
         if self.image_position == "banner":
-            self.element.classes.add("banner-image")
+            self.element.classList.add("banner-image")
         else:
-            self.element.classes.remove("banner-image")
+            self.element.classList.remove("banner-image")
         self._update_header_visibility()
 
     def on_published_at_changed(self):
@@ -255,9 +255,9 @@ class ContentCard(Widget):
         Switch the timestamp between header and footer positions.
         """
         if self.publish_position == "end":
-            self.element.classes.add("publish-end")
+            self.element.classList.add("publish-end")
         else:
-            self.element.classes.remove("publish-end")
+            self.element.classList.remove("publish-end")
         self._update_header_visibility()
 
     def on_shape_changed(self):
@@ -265,16 +265,16 @@ class ContentCard(Widget):
         Toggle square-corner styling on the card.
         """
         if self.shape == "square":
-            self.element.classes.add("square")
+            self.element.classList.add("square")
         else:
-            self.element.classes.remove("square")
+            self.element.classList.remove("square")
 
     def on_purpose_changed(self):
         """
         Update the card's colour-scheme CSS variables.
         """
         if self.purpose == "DEFAULT":
-            self.element.style.pop("--card-bg", None)
+            self.element.style.removeProperty("--card-bg")
             self.element.style["--card-border-color"] = "var(--primary)"
         else:
             p = self.purpose.lower()

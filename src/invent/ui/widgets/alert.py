@@ -31,7 +31,7 @@ from invent.ui.core import (
 )
 from invent.ui.core.measures import PURPOSES
 from invent.utils import from_markdown
-from pyscript.web import button, div, p
+from invent._compat import button, div, p
 
 
 class Alert(Widget):
@@ -80,7 +80,7 @@ class Alert(Widget):
         Update the alert's colour-scheme CSS variables.
         """
         if self.purpose == "DEFAULT":
-            self.element.style.pop("--alert-bg", None)
+            self.element.style.removeProperty("--alert-bg")
             self.element.style["--alert-border-color"] = "var(--primary)"
         else:
             p = self.purpose.lower()

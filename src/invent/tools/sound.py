@@ -19,8 +19,8 @@ limitations under the License.
 """
 
 import invent
-from pyscript.web import audio
-from pyscript.ffi import create_proxy
+from invent._compat import audio
+from pyodide.ffi import create_proxy
 
 PLAYING = "_AUDIO_PLAYING"
 ENDED = "_AUDIO_ENDED"

@@ -18,7 +18,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from pyscript.web import page as dom  # Avoid name collision with page.
+from js import document as dom
 
 import invent
 from .i18n import load_translations, _
@@ -104,7 +104,7 @@ class App:
             self.append(*pages)
         if native:
             # Set the app to be a full width native looking app.
-            dom.body.classes.add("app-view")
+            dom.body.classList.add("app-view")
         invent.set_media_root(media_root)
 
     @property
@@ -198,7 +198,7 @@ class App:
         # Render all the pages to the DOM.
         if self.pages:
             for page in self.pages:
-                dom.append(page.element._dom_element)
+                dom.body.append(page.element)
             # Show the first page.
             self.show_page(self.pages[0].id)
         else:

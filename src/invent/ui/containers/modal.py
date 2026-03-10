@@ -36,8 +36,9 @@ from invent.ui.core import Widget, TextProperty, ChoiceProperty, Event
 from invent.ui.widgets.button import Button
 from invent.ui.containers import Column
 from invent.ui.core.measures import PURPOSES
-from pyscript.web import button, div, page
-from pyscript.ffi import create_proxy
+from invent._compat import button, div
+from js import document
+from pyodide.ffi import create_proxy
 
 
 class Modal(Widget):
@@ -151,7 +152,7 @@ class Modal(Widget):
             "click", create_proxy(lambda e: close_modal())
         )
 
-        page.body.append(backdrop)
+        document.body.append(backdrop)
 
     def render(self):
         # Render the modal content into a div, but don't add it to the DOM yet.

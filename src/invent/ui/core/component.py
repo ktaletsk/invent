@@ -243,7 +243,7 @@ class Component:
         if self.background_color:
             self.element.style["background-color"] = self.background_color
         else:
-            self.element.style.remove("background-color")
+            self.element.style.removeProperty("background-color")
 
     def on_border_color_changed(self):
         """
@@ -252,7 +252,7 @@ class Component:
         if self.border_color:
             self.element.style["border-color"] = self.border_color
         else:
-            self.element.style.remove("border-color")
+            self.element.style.removeProperty("border-color")
 
     def on_border_width_changed(self):
         """
@@ -263,7 +263,7 @@ class Component:
             size = sizes[self.border_width.upper()]
             self.element.style["border-width"] = size
         else:
-            self.element.style.remove("border-width")
+            self.element.style.removeProperty("border-width")
 
     def on_border_style_changed(self):
         """
@@ -272,7 +272,7 @@ class Component:
         if self.border_style:
             self.element.style["border-style"] = self.border_style
         else:
-            self.element.style.remove("border-style")
+            self.element.style.removeProperty("border-style")
 
     def on_horizontal_align_changed(self):
         """

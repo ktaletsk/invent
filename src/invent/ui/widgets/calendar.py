@@ -23,8 +23,8 @@ limitations under the License.
 from invent.i18n import _
 from invent.ui.core import Widget, DictProperty, IntegerProperty, Event
 from datetime import date, datetime, timedelta
-from pyscript import web
-from pyscript.ffi import create_proxy
+from invent import _compat as web
+from pyodide.ffi import create_proxy
 
 # List of month names for display purposes. The first entry is an empty string
 # to make the month numbers 1-indexed for easier readability.

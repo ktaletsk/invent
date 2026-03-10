@@ -19,7 +19,7 @@ limitations under the License.
 """
 
 from invent.i18n import _
-from pyscript.web import div, table, caption, thead, tbody, tr, th, td
+from invent._compat import div, table, caption, thead, tbody, tr, th, td
 from invent.ui.core import Widget, ListProperty, TextProperty, BooleanProperty
 
 
@@ -62,8 +62,8 @@ class Table(Widget):
         Convert the data into a table, given the current settings.
         """
         # Reset the table in the DOM.
-        self._table_head._dom_element.replaceChildren()
-        self._table_body._dom_element.replaceChildren()
+        self._table_head.replaceChildren()
+        self._table_body.replaceChildren()
         # If there's no data, there's nothing to do.
         if self.data:
             temp_data = self.data[:]

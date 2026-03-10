@@ -24,8 +24,8 @@ from invent.ui.core import (
     TextProperty,
     Event,
 )
-from pyscript.web import audio
-from pyscript.ffi import create_proxy
+from invent._compat import audio
+from pyodide.ffi import create_proxy
 
 
 class Audio(Widget):

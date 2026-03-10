@@ -26,8 +26,8 @@ from invent.ui.core import (
     Event,
 )
 from invent.ui.core.measures import PURPOSES
-from pyscript.web import button
-from pyscript.ffi import create_proxy
+from invent._compat import button
+from pyodide.ffi import create_proxy
 
 
 class Button(Widget):

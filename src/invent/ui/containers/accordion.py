@@ -19,7 +19,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from pyscript.web import div, input_
+from invent._compat import div, input_
 
 from invent.i18n import _
 from .column import Column

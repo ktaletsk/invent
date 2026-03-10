@@ -19,7 +19,7 @@ limitations under the License.
 """
 
 import asyncio
-import pyscript
+from js import window
 import invent
 import json
 
@@ -44,7 +44,7 @@ def request(url, json=False, result_key=None, *args, **kwargs):
     """
 
     async def wrapper():
-        response = await pyscript.fetch(url, *args, **kwargs)
+        response = await window.fetch(url, *args, **kwargs)
         if response.ok:
             if json:
                 result = await response.json()
@@ -54,7 +54,7 @@ def request(url, json=False, result_key=None, *args, **kwargs):
                 invent.datastore[result_key] = result
         else:
             invent.datastore[result_key] = (
-                WEB_ERROR + f": {response.status} {response.message}"
+                WEB_ERROR + f": {response.status} {response.statusText}"
             )
 
     asyncio.create_task(wrapper())
@@ -81,7 +81,7 @@ class _WebSocket:
         # Flag to indicate the websocket is open.
         self._is_open = asyncio.Event()
         # Now go connect via the given URL.
-        self._connection = pyscript.WebSocket(url=url)
+        self._connection = window.WebSocket.new(url)
         self._connection.onopen = self._on_open
         self._connection.onmessage = self._on_message
         self._connection.onerror = self._on_error

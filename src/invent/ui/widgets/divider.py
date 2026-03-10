@@ -19,7 +19,7 @@ limitations under the License.
 """
 
 from invent.i18n import _
-from pyscript.web import hr, div
+from invent._compat import hr, div
 from invent.ui.core import Widget
 from invent.ui.containers import Row
 
@@ -38,8 +38,8 @@ class Divider(Widget):
     def render(self):
         # Always render as <hr> initially
         element = hr(id=self.id)
-        element.classes.add("divider")
-        element.classes.add("divider-horizontal")
+        element.classList.add("divider")
+        element.classList.add("divider-horizontal")
         return element
 
     @property
@@ -56,9 +56,9 @@ class Divider(Widget):
         # Called whenever _parent is assigned
         if self.element is None:
             return
-        self.element.classes.remove("divider-horizontal")
-        self.element.classes.remove("divider-vertical")
+        self.element.classList.remove("divider-horizontal")
+        self.element.classList.remove("divider-vertical")
         if isinstance(self._parent, Row):
-            self.element.classes.add("divider-vertical")
+            self.element.classList.add("divider-vertical")
         else:
-            self.element.classes.add("divider-horizontal")
+            self.element.classList.add("divider-horizontal")

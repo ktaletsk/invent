@@ -20,7 +20,7 @@ limitations under the License.
 """
 
 from invent.i18n import _
-from pyscript.web import nav, details, summary, div
+from invent._compat import nav, details, summary, div
 
 from invent.ui.core import Widget, DictProperty
 from invent.ui.widgets.label import Label

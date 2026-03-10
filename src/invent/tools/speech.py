@@ -22,8 +22,8 @@ limitations under the License.
 import invent
 from invent.i18n import _
 from invent.tools.timing import schedule, cancel
-from pyscript.ffi import create_proxy
-from pyscript import window
+from pyodide.ffi import create_proxy
+from js import window
 
 # Check if the speech synthesis and recognition APIs are available.
 try:

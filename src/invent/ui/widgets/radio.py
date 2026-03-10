@@ -19,8 +19,8 @@ limitations under the License.
 """
 
 from invent.i18n import _
-from pyscript.web import input_, label, span
-from pyscript.ffi import create_proxy
+from invent._compat import input_, label, span
+from pyodide.ffi import create_proxy
 
 from invent.ui.core import Widget, BooleanProperty, TextProperty
 

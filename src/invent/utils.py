@@ -4,7 +4,7 @@ Utility and compatibility functions.
 
 import inspect
 import sys
-from pyscript.web import div
+from invent._compat import div
 from .app import App
 from .i18n import _
 

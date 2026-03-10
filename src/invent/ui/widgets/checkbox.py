@@ -19,8 +19,8 @@ limitations under the License.
 """
 
 from invent.i18n import _
-from pyscript.web import input_, label, span
-from pyscript.ffi import create_proxy
+from invent._compat import input_, label, span
+from pyodide.ffi import create_proxy
 
 from invent.ui.core import Event, Widget, BooleanProperty, TextProperty
 
@@ -75,7 +75,7 @@ class CheckBox(Widget):
             type="checkbox", id=self.id, name=self.name
         )
         self._text_span = span(self.label)
-        self._text_span.classes.add("checkbox")
+        self._text_span.classList.add("checkbox")
         element = label(self._checkbox_element, self._text_span)
         setattr(element, "for", self.id)
         self._checkbox_element.addEventListener(

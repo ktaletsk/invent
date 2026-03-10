@@ -54,6 +54,6 @@ class Footer(Row):
         Update the footer's CSS class when the sticky property changes.
         """
         if self.sticky:
-            self.element.classes.add("invent-footer--sticky")
+            self.element.classList.add("invent-footer--sticky")
         else:
-            self.element.classes.remove("invent-footer--sticky")
+            self.element.classList.remove("invent-footer--sticky")

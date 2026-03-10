@@ -22,7 +22,7 @@ limitations under the License.
 """
 
 import json
-from pyscript import Storage, window
+from js import window
 from .channels import Message, publish
 
 
@@ -286,18 +286,10 @@ class LocalStorageBackend(DataBackend):
             raise KeyError(key)
 
 
-class IndexDBBackend(Storage, DataBackend):
+class IndexDBBackend(DataBackend):
     """
-    A simple key/value data store using the browser's `indexedDB` via
-    PyScript's own Storage class.
-
-    Wraps a JavaScript `IDBDatabase` object for browser based data storage.
-    Looks and feels mostly like a Python `dict` but has the same characteristics
-    as a JavaScript `indexedDB` object.
-
-    For more information see:
-
-    <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API>
+    Stub for PyScript's IndexDB storage backend. Not available in Pyodide
+    runtime -- falls back to LocalStorageBackend when used via setup().
     """
 
     ...

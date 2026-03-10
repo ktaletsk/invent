@@ -22,7 +22,7 @@ limitations under the License.
 from invent.i18n import _
 from invent.utils import from_markdown
 from invent.ui.core import Widget, TextProperty
-from pyscript.web import div
+from invent._compat import div
 
 
 class Label(Widget):

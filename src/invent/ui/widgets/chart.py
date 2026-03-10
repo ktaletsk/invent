@@ -21,9 +21,9 @@ limitations under the License.
 
 from invent.i18n import _
 from invent.ui.core import Widget, Event, ChoiceProperty, JSONProperty
-from pyscript.web import div, canvas
-from pyscript.ffi import to_js, create_proxy
-from pyscript import window
+from invent._compat import div, canvas
+from pyodide.ffi import to_js, create_proxy
+from js import window
 
 #: The types of chart that can be rendered.
 _CHARTS = [
@@ -138,7 +138,7 @@ class Chart(Widget):
                 self.chart_instance.update()
             else:
                 self.chart_instance = chart_js.Chart.new(
-                    self.chart_canvas._dom_element, to_js(chart_args)
+                    self.chart_canvas, to_js(chart_args)
                 )
             # Publish the chart updated event.
             self.publish(

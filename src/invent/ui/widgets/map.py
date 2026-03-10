@@ -18,7 +18,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from pyscript.web import div
+from invent._compat import div
 from invent.i18n import _
 from invent.utils import from_markdown
 from invent.ui.core import (
@@ -30,8 +30,8 @@ from invent.ui.core import (
     ListProperty,
     ChoiceProperty,
 )
-from pyscript import window
-from pyscript.ffi import create_proxy
+from js import window
+from pyodide.ffi import create_proxy
 
 MARKER_ICON_DEFAULT = "default"
 MARKER_ICON_AIRPORT = "airport"
@@ -378,9 +378,9 @@ class Map(Widget):
         self.L = L  # escape hatch for advanced users.
 
         element = div(id=self.id)
-        element.classes.add("invent-map-widget")
+        element.classList.add("invent-map-widget")
 
-        self.map = L.map(element._dom_element).setView(
+        self.map = L.map(element).setView(
             L.latLng(self.center_latitude, self.center_longitude),
             self.zoom_level,
         )

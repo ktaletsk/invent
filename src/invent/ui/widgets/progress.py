@@ -19,7 +19,7 @@ limitations under the License.
 """
 
 from invent.i18n import _
-from pyscript.web import progress
+from invent._compat import progress
 from invent.ui.core import Widget, Event, FloatProperty
 
 

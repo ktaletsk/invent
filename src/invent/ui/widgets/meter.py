@@ -19,7 +19,7 @@ limitations under the License.
 """
 
 from invent.i18n import _
-from pyscript.web import meter
+from invent._compat import meter
 from invent.ui.core import (
     Widget,
     Event,

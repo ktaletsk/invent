@@ -20,7 +20,7 @@ limitations under the License.
 
 from invent.i18n import _
 from invent.ui.core import Widget, TextProperty
-from pyscript.web import pre, code, link, page
+from invent._compat import pre, code, link
 
 _default = """
 def hello(name="world"):
@@ -45,7 +45,7 @@ class Code(Widget):
         self.code_element.innerText = self.code
 
     def on_language_changed(self):
-        self.code_element.classes.append(f"language-{self.language}")
+        self.code_element.classList.add(f"language-{self.language}")
 
     def render(self):
         self.code_element = code()

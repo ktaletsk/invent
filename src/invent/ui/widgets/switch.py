@@ -19,8 +19,8 @@ limitations under the License.
 """
 
 from invent.i18n import _
-from pyscript.web import input_, label, span, div
-from pyscript.ffi import create_proxy
+from invent._compat import input_, label, span, div
+from pyodide.ffi import create_proxy
 
 from invent.ui.core import Widget, BooleanProperty, TextProperty
 
@@ -67,12 +67,12 @@ class Switch(Widget):
             type="checkbox", id=self.id, name=self.name
         )
         self._span_element = span(" ")
-        self._span_element.classes.add("slider")
+        self._span_element.classList.add("slider")
         self._label_text_element = label(text=self.label)
-        self._label_text_element.classes.add("switch-label")
+        self._label_text_element.classList.add("switch-label")
         setattr(self._label_text_element, "for", self.id)
         container_label = label(self._checkbox_element, self._span_element)
-        container_label.classes.add("switch")
+        container_label.classList.add("switch")
         element = div(container_label, self._label_text_element)
         self._checkbox_element.addEventListener(
             "change", create_proxy(self.on_changed)

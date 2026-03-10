@@ -20,7 +20,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from pyscript.web import page as document
+from js import document
 
 from .column import Column
 from invent.i18n import _

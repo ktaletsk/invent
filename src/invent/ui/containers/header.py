@@ -54,6 +54,6 @@ class Header(Row):
         Update the header's CSS class when the sticky property changes.
         """
         if self.sticky:
-            self.element.classes.add("invent-header--sticky")
+            self.element.classList.add("invent-header--sticky")
         else:
-            self.element.classes.remove("invent-header--sticky")
+            self.element.classList.remove("invent-header--sticky")

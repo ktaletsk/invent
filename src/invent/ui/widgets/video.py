@@ -26,8 +26,8 @@ from invent.ui.core import (
     TextProperty,
     Event,
 )
-from pyscript.web import div, video
-from pyscript.ffi import create_proxy
+from invent._compat import div, video
+from pyodide.ffi import create_proxy
 
 # Patterns to extract video IDs from hosted platform URLs.
 _YOUTUBE_ID_RE = re.compile(r"v=([a-zA-Z0-9_-]+)")

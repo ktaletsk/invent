@@ -19,8 +19,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from pyscript.ffi import to_js
-from pyscript.web import div
+from pyodide.ffi import to_js
+from invent._compat import div
 
 from .component import Component
 from invent.i18n import _
@@ -140,5 +140,5 @@ class Container(Component):
         lay out their widgets.
         """
         element = div()
-        element.classes.add(f"invent-{type(self).__name__.lower()}")
+        element.classList.add(f"invent-{type(self).__name__.lower()}")
         return element
