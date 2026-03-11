@@ -43,18 +43,20 @@ class Selector(Widget):
         return '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256"><path fill="currentColor" d="M112 40a8 8 0 0 0-8 8v16H24A16 16 0 0 0 8 80v96a16 16 0 0 0 16 16h80v16a8 8 0 0 0 16 0V48a8 8 0 0 0-8-8M24 176V80h80v96Zm224-96v96a16 16 0 0 1-16 16h-88a8 8 0 0 1 0-16h88V80h-88a8 8 0 0 1 0-16h88a16 16 0 0 1 16 16M88 112a8 8 0 0 1-8 8h-8v24a8 8 0 0 1-16 0v-24h-8a8 8 0 0 1 0-16h32a8 8 0 0 1 8 8"/></svg>'  # noqa
 
     def on_choices_changed(self):
-        self.element.options.clear()
+        from js import document
+        self.element.innerHTML = ""
         for choice in self.choices:
-            selected = bool(choice == self.value)
-            self.element.options.add(
-                value=choice, text=choice, selected=selected
-            )
+            option = document.createElement("option")
+            option.value = choice
+            option.text = choice
+            option.selected = bool(choice == self.value)
+            self.element.appendChild(option)
 
     def on_change(self, event):
         """
         Bound to the js "change" event on the widget's element.
         """
-        self.value = self.element.options.selected.value
+        self.value = self.element.value
         self.publish("changed", selected=self.value)
 
     def render(self):
